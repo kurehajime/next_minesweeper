@@ -38,7 +38,7 @@ export default function BarElement(props: Props) {
                 <div className='item center' >
                     <button type="submit" name="reset" value="reset">{face()}</button>
                 </div>
-                <div className='item num' ><b>{0}</b></div>
+                <div className='item num' ><b>{999}</b></div>
             </div >
         </div>
 
