@@ -19,7 +19,13 @@ export default function BarElement(props: Props) {
 
     return (
         <div>
-            <div className="title_bar" ><div className="title"> Minesweeper </div></div>
+            <div className="title_bar"
+                style={
+                    {
+                        width: props.field.Size() * cellSize,
+                    }
+                }
+            ><div className="title"> Minesweeper </div></div>
             <div
                 style={
                     {
