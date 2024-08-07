@@ -22,12 +22,7 @@ export default function FieldElement(props: Props) {
         >
             {
                 props.field.Cells.map((cell, index) => (
-                    <button
-                        type="submit"
-                        key={index}
-                        name="hit"
-                        value={index.toString()}
-                    >{cell.Count} </button>
+                    <CellElement cell={cell} index={index} />
                 ))
             }
         </div>)

@@ -1,5 +1,5 @@
 import { Random } from "./Random"
-import { Cell } from "./State"
+import { Cell } from "./Cell"
 
 export class Field {
     private _Cells: Cell[]
