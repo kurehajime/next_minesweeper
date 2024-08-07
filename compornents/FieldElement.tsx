@@ -5,8 +5,6 @@ import "./FieldElement.css"
 type Props = {
     field: Field
     cellSize: number
-    index: number
-    selected: boolean
 }
 export default function FieldElement(props: Props) {
     const cellSize = props.cellSize
@@ -22,7 +20,7 @@ export default function FieldElement(props: Props) {
                 x={x}
                 y={y}
                 cellSize={cellSize}
-                selected={props.selected && props.index === index}
+                selected={false}
             />
         })
         }
