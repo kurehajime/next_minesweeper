@@ -78,7 +78,6 @@ export class Field {
     public static GetRandomField(size: number, bomb: number, random = new Random()): Field {
         const len = size * size;
         const opens = Array(len).fill(false);
-        const flags = Array(len).fill(false);
         const bombs = Array(len).fill(false);
         for (let i = 0; i < bomb; i++) {
             bombs[i] = true;
@@ -92,7 +91,6 @@ export class Field {
         return new Field(Array(len).fill(null).map((_, i) => {
             return {
                 Open: opens[i],
-                Flag: flags[i],
                 Bomb: bombs[i],
                 Count: Field.getBombCount(i, bombs, size)
             }
