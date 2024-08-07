@@ -9,7 +9,6 @@ type Props = {
 export default function FieldElement(props: Props) {
     const cellSize = props.cellSize
     const FieldSize = props.field.Size() * cellSize
-
     return (
         <div
             style={{
@@ -22,7 +21,11 @@ export default function FieldElement(props: Props) {
         >
             {
                 props.field.Cells.map((cell, index) => (
-                    <CellElement cell={cell} index={index} />
+                    <CellElement
+                        cell={cell}
+                        index={index}
+                        cellSize={cellSize}
+                    />
                 ))
             }
         </div>)

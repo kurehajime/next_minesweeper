@@ -15,6 +15,16 @@ export class Field {
         return new Field(this._Cells)
     }
 
+    public OpenArray(indexes: number[]): Field {
+        let returnField = this.Copy();
+        indexes.forEach((opened, i) => {
+            if (opened === 1) {
+                returnField = returnField.Open(i);
+            }
+        })
+        return returnField;
+    }
+
     // マスを開ける
     public Open(index: number): Field {
         let returnField = this.Copy();
