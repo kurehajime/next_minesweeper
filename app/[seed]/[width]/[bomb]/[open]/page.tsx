@@ -21,13 +21,15 @@ export default function Game({ params }: Props) {
             {params.bomb}
             {params.open}
             <form action={actionFunction}>
-                <input type="string" name="seed" />
-                <button type="submit">Submit</button>
+                <input type="hidden" name="seed" value={params.seed} />
+                <input type="hidden" name="width" value={params.width} />
+                <input type="hidden" name="bomb" value={params.bomb} />
+                <input type="hidden" name="open" value={params.open} />
+                <FieldElement
+                    field={initField}
+                    cellSize={cellSize}
+                />
             </form>
-            <FieldElement
-                field={initField}
-                cellSize={cellSize}
-            />
         </div>
     );
 }
