@@ -26,7 +26,7 @@ export default function CellElement(props: Props) {
             style={{
                 background: "none",
                 border: "none",
-                cursor: "pointer",
+                cursor: props.cell.Open ? "default" : "pointer",
                 padding: "0",
                 width: cellSize,
                 height: cellSize,
