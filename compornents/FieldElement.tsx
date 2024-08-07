@@ -18,6 +18,7 @@ export default function FieldElement(props: Props) {
                 gridTemplateColumns: `repeat(${props.field.Size()}, 1fr)`,
                 gridTemplateRows: `repeat(${props.field.Size()}, 1fr)`,
             }}
+            className="field"
         >
             {
                 props.field.Cells.map((cell, index) => (
