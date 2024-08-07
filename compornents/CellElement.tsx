@@ -28,6 +28,8 @@ export default function CellElement(props: Props) {
                 border: "none",
                 cursor: "pointer",
                 padding: "0",
+                width: cellSize,
+                height: cellSize,
             }}
         >
             <svg viewBox={`0 0 ${cellSize} ${cellSize}`} width="100%" height="100%">
