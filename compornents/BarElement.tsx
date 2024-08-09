@@ -17,6 +17,16 @@ export default function BarElement(props: Props) {
         return "😀"
     }
 
+    const messagge = () => {
+        if (props.field.IsComplete()) {
+            return "Congratulation!"
+        }
+        if (props.field.IsGameOver()) {
+            return "Fail!"
+        }
+        return "Minesweeper"
+    }
+
     return (
         <div>
             <div className="title_bar"
@@ -25,7 +35,7 @@ export default function BarElement(props: Props) {
                         width: props.field.Size() * cellSize,
                     }
                 }
-            ><div className="title"> Minesweeper </div></div>
+            ><div className="title">&nbsp;{`${messagge()}`} </div></div>
             <div
                 style={
                     {
@@ -36,7 +46,7 @@ export default function BarElement(props: Props) {
             >
                 <div className='item num' ><b>{props.field.BombCount()}</b></div>
                 <div className='item center' >
-                    <button type="submit" name="reset" value="reset">{face()}</button>
+                    <button type="submit" name="reset" value="reset" title="Reset game" >{face()}</button>
                 </div>
                 <div className='item num' ><b>{999}</b></div>
             </div >
