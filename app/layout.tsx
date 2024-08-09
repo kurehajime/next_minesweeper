@@ -16,6 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Mine Sweeper</title>
+        <link rel="canonical" href="https://next-minesweeper-omega.vercel.app/" />
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
