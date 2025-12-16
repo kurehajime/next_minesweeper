@@ -29,10 +29,11 @@ Successfully upgraded Next.js from version 14.2.5 to 16.0.10.
      - `target`: set to `ES2017` (for top-level await support)
      - `include`: added `.next/dev/types/**/*.ts`
 
-3. **Redirect Usage Fix**
-   - Added explicit `return null` statements after `redirect()` calls in server components
-   - This prevents server-side exceptions in Next.js 16 where components using `redirect()` must have an explicit return type
-   - Affected files: `app/page.tsx`, `app/[seed]/page.tsx`, `app/[seed]/[width]/page.tsx`, `app/[seed]/[width]/[bomb]/page.tsx`
+3. **Async Params (Critical Breaking Change)**
+   - In Next.js 15+, `params` and `searchParams` are now Promises and must be awaited
+   - All page components with dynamic routes have been made `async` and updated to await params
+   - Changed from `({ params }: Props)` to `async (props: Props)` with `const params = await props.params`
+   - Affected files: `app/[seed]/page.tsx`, `app/[seed]/[width]/page.tsx`, `app/[seed]/[width]/[bomb]/page.tsx`, `app/[seed]/[width]/[bomb]/[open]/page.tsx`
 
 ## Breaking Changes
 
@@ -44,9 +45,33 @@ ESLint 9 requires a flat configuration format (`eslint.config.mjs`) instead of t
 
 The `next lint` command appears to have been removed or changed in Next.js 16. We now use ESLint directly via `npm run lint` which executes `eslint .`.
 
-### redirect() Usage
+### Async Params (Critical)
 
-In Next.js 15+, server components that call `redirect()` must have an explicit return statement for type safety. Without this, the application may throw server-side exceptions during deployment. All redirect-only components have been updated to include `return null` after the `redirect()` call.
+**This is the most important breaking change in Next.js 15+.**
+
+In Next.js 15 and later, `params` and `searchParams` are now Promises. All page components that use dynamic route segments must:
+
+1. Be marked as `async`
+2. Await the `params` before accessing its properties
+
+**Before (Next.js 14):**
+```typescript
+export default function Page({ params }: { params: { id: string } }) {
+  const id = params.id;
+  // ...
+}
+```
+
+**After (Next.js 15+):**
+```typescript
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+  const id = params.id;
+  // ...
+}
+```
+
+Failing to await params will cause server-side exceptions in production (Error Digest: 3506760547).
 
 ## Known Issues
 
