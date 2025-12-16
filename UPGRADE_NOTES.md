@@ -46,7 +46,7 @@ The `next lint` command appears to have been removed or changed in Next.js 16. W
 
 ### redirect() Usage
 
-In Next.js 15+, server components that call `redirect()` must have an explicit return statement (even though it's unreachable code). Without this, the application may throw server-side exceptions during deployment. All redirect-only components have been updated to include `return null` after the `redirect()` call.
+In Next.js 15+, server components that call `redirect()` must have an explicit return statement for type safety. Without this, the application may throw server-side exceptions during deployment. All redirect-only components have been updated to include `return null` after the `redirect()` call.
 
 ## Known Issues
 

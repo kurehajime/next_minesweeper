@@ -14,5 +14,5 @@ export default function Bomb({ params }: Props) {
     const bomb = parseInt(params.bomb);
     const open = "0".repeat(width * width);
     redirect(`/${seed}/${width}/${bomb}/${open}`);
-    return null; // This line will never be reached due to redirect
+    return null; // Required for Next.js 16 type safety
 } 
