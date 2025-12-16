@@ -29,6 +29,11 @@ Successfully upgraded Next.js from version 14.2.5 to 16.0.10.
      - `target`: set to `ES2017` (for top-level await support)
      - `include`: added `.next/dev/types/**/*.ts`
 
+3. **Redirect Usage Fix**
+   - Added explicit `return null` statements after `redirect()` calls in server components
+   - This prevents server-side exceptions in Next.js 16 where components using `redirect()` must have an explicit return type
+   - Affected files: `app/page.tsx`, `app/[seed]/page.tsx`, `app/[seed]/[width]/page.tsx`, `app/[seed]/[width]/[bomb]/page.tsx`
+
 ## Breaking Changes
 
 ### ESLint 9 Migration
@@ -38,6 +43,10 @@ ESLint 9 requires a flat configuration format (`eslint.config.mjs`) instead of t
 ### Next.js CLI Changes
 
 The `next lint` command appears to have been removed or changed in Next.js 16. We now use ESLint directly via `npm run lint` which executes `eslint .`.
+
+### redirect() Usage
+
+In Next.js 15+, server components that call `redirect()` must have an explicit return statement (even though it's unreachable code). Without this, the application may throw server-side exceptions during deployment. All redirect-only components have been updated to include `return null` after the `redirect()` call.
 
 ## Known Issues
 
