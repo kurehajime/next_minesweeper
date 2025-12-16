@@ -5,15 +5,16 @@ import { Random } from "@/lib/Random";
 import BarElement from "@/compornents/BarElement";
 import { redirect } from "next/navigation";
 type Props = {
-    params: {
+    params: Promise<{
         seed: string;
         width: string;
         bomb: string;
         open: string;
-    }
+    }>
 }
 
-export default function Game({ params }: Props) {
+export default async function Game(props: Props) {
+    const params = await props.params;
     const initField = Field.GetRandomField(parseInt(params.width), parseInt(params.bomb), new Random(parseInt(params.seed)));
     const openedField = initField.OpenArray(params.open.split("").map(Number));
     const cellSize = parseInt(params.width) <= 10 ? 50 : 25;

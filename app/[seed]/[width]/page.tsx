@@ -1,13 +1,14 @@
 import { redirect } from "next/navigation";
 
 type Props = {
-    params: {
+    params: Promise<{
         seed: string;
         width: string;
-    }
+    }>
 }
 
-export default function Width({ params }: Props) {
+export default async function Width(props: Props) {
+    const params = await props.params;
     const seed = params.seed;
     const width = parseInt(params.width);
     const bomb = 10;

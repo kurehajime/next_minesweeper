@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 type Props = {
-    params: {
+    params: Promise<{
         seed: string;
-    }
+    }>
 }
-export default function Seed({ params }: Props) {
+export default async function Seed(props: Props) {
+    const params = await props.params;
     const seed = params.seed;
     const width = 10;
     const bomb = 10;
